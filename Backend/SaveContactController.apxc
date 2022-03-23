@@ -1,0 +1,7 @@
+public class SaveContactController {
+    @AuraEnabled
+    public static Persona__c updateContact(Persona__c contact ) {
+        update contact;
+        return contact;
+    }
+}
