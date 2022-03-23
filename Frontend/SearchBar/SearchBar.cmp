@@ -1,0 +1,40 @@
+<aura:component
+  controller="GetContactController"
+  implements="forceCommunity:availableForAllPageTypes"
+  access="global"
+>
+  <aura:attribute name="searchBar" type="Persona__c" default="{'Dni__c': ''}" />
+  <aura:registerEvent name="getContactData" type="c:getContactData" />
+  <div
+    class="slds-box slds-align_absolute-center slds-theme_default"
+    style="width: fit-content"
+  >
+    <div>
+      <h1 class="slds-text-heading_medium" style="padding-bottom: 1rem">
+        Busca personas solo con su DNI
+      </h1>
+      <lightning:layout class="searchBarContainer">
+        <lightning:layoutItem>
+          <lightning:input
+            placeholder="Ingresa un DNI "
+            name="dni"
+            variant="label-hidden"
+            step="1"
+            min="5000000"
+            type="search"
+            value="{!v.searchBar.Dni__c}"
+          />
+        </lightning:layoutItem>
+        <lightning:layoutItem>
+          <lightning:button
+            class="searchButton"
+            variant="brand-outline"
+            label="Buscar"
+            title="Search button"
+            onclick="{! c.handleSearchClick }"
+          />
+        </lightning:layoutItem>
+      </lightning:layout>
+    </div>
+  </div>
+</aura:component>

@@ -1,0 +1,156 @@
+<aura:component
+  controller="SaveContactController"
+  implements="forceCommunity:availableForAllPageTypes"
+  access="global"
+>
+  <aura:attribute
+    name="dbRequested"
+    type="boolean"
+    default="false"
+    access="global"
+  />
+  <aura:attribute
+    name="isDisabled_Name__c"
+    type="boolean"
+    default="false"
+    access="global"
+  />
+  <aura:attribute
+    name="isDisabled_Height__c"
+    type="boolean"
+    default="false"
+    access="global"
+  />
+  <aura:attribute
+    name="isDisabled_Gender__c"
+    type="boolean"
+    default="false"
+    access="global"
+  />
+  <aura:attribute
+    name="isDisabled_HairColor__c"
+    type="boolean"
+    default="false"
+    access="global"
+  />
+  <aura:attribute
+    name="isDisabled_EyesColor__c"
+    type="boolean"
+    default="false"
+    access="global"
+  />
+  <aura:attribute
+    name="isDisabled_Dni__c"
+    type="boolean"
+    default="false"
+    access="global"
+  />
+
+  <aura:attribute
+    name="person"
+    type="Persona__c"
+    default="{ 'sobjectType': 'Persona__c',
+                             'Name__c': '',
+                             'Height__c': '' ,
+                             'Gender__c': '',
+                             'HairColor__c': '',
+                             'EyesColor__c': '',
+                             'Dni__c': '',
+                             'Id': ''}"
+    access="global"
+  />
+
+  <aura:handler event="c:getContactData" action="{!c.handleGetContact}" />
+
+  <div class="slds-align_absolute-center slds-p-around_medium">
+    <fieldset class="slds-box slds-theme_default slds-container_small">
+      <form class="slds-form_stacked contactForm" style="width: 500px">
+        <h1 class="slds-text-heading_medium">Datos de contacto</h1>
+        <lightning:input
+          name="verification"
+          class="slds-hide"
+          value="{!v.dbRequested}"
+        />
+
+        <lightning:input name="id" class="slds-hide" value="{!v.Id}" />
+
+        <lightning:input
+          name="name"
+          placeholder="Ej: Daniel Garcia"
+          label="Nombre completo"
+          value="{!v.person.Name__c}"
+          disabled="{!v.isDisabled_Name__c}"
+        />
+
+        <lightning:input
+          placeholder="Ej: 186 (cm)"
+          type="number"
+          min="63.0"
+          max="251.0"
+          step="0.5"
+          label="Altura"
+          value="{!v.person.Height__c}"
+          disabled="{!v.isDisabled_Height__c}"
+        />
+
+        <lightning:select
+          name="select"
+          label="Género"
+          value="{!v.person.Gender__c}"
+          disabled="{!v.isDisabled_Gender__c}"
+        >
+          <option value="" disabled="true" selected="true">
+            Elejí una opcion
+          </option>
+          <option value="Hombre">Hombre</option>
+          <option value="Mujer">Mujer</option>
+          <option value="No binario">No Binario</option>
+        </lightning:select>
+
+        <lightning:input
+          name="hairColor"
+          placeholder="Color de cabello"
+          label="Color de Cabello"
+          value="{!v.person.HairColor__c}"
+          disabled="{!v.isDisabled_HairColor__c}"
+        />
+
+        <lightning:select
+          name="select"
+          label="Color de Ojos"
+          value="{!v.person.EyesColor__c}"
+          disabled="{!v.isDisabled_EyesColor__c}"
+        >
+          <option value="" disabled="true" selected="true">
+            Elejí una opcion
+          </option>
+          <option value="Grises">Grises</option>
+          <option value="Marrones">Marrones</option>
+          <option value="Verdes">Verdes</option>
+          <option value="Azules">Azules</option>
+          <option value="Negros">Negros</option>
+        </lightning:select>
+
+        <lightning:input
+          name="dni"
+          placeholder="Ej: 11.111.111 "
+          label="DNI"
+          type="number"
+          step="1"
+          min="5000000"
+          value="{!v.person.Dni__c}"
+          disabled="{!v.isDisabled_Dni__c}"
+        />
+
+        <br />
+
+        <lightning:button
+          variant="brand-outline"
+          label="Guardar"
+          title="Guardar"
+          onclick="{! c.handleSaveClick }"
+        />
+      </form>
+    </fieldset>
+  </div>
+</aura:component>
