@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION">
+  <aura:attribute name="contact" type="Persona__c" />
+</aura:event>
