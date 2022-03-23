@@ -1,0 +1,6 @@
+public class GetContactController {
+    @AuraEnabled
+    public static List<Persona__c> searchContact(Decimal dni ) {
+        return [SELECT Name__c, Height__c, 	HairColor__c, Gender__c, EyesColor__c, 	Dni__c FROM Persona__c WHERE Dni__c = :dni Limit 1 ];
+    }
+}
